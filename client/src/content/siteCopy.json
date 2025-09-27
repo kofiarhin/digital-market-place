@@ -1,0 +1,45 @@
+{
+  "navigation": {
+    "brand": "MultiSeller Digital Store",
+    "links": [
+      { "to": "/", "label": "Home" },
+      { "to": "/catalog", "label": "Catalog" },
+      { "to": "/sellers", "label": "Sellers" }
+    ]
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Empower Digital Creators",
+      "title": "Marketplace infrastructure for multi-seller digital stores",
+      "subtitle": "Launch a curated storefront where creators can publish, sell, and deliver digital products securely.",
+      "primaryCta": "Explore Products",
+      "secondaryCta": "Become a Seller"
+    },
+    "features": [
+      {
+        "title": "Trusted payouts",
+        "description": "Automated weekly payouts with verification workflows keep sellers informed and confident."
+      },
+      {
+        "title": "Secure downloads",
+        "description": "Token-guarded delivery with download grants protects premium content and buyers alike."
+      },
+      {
+        "title": "Actionable insights",
+        "description": "Metrics dashboards track product performance, revenue, and conversion trends in real time."
+      }
+    ]
+  },
+  "notFound": {
+    "title": "Page unavailable",
+    "subtitle": "The content you are looking for could not be found."
+  },
+  "footer": {
+    "copyright": "© 2024 MultiSeller Digital Store. All rights reserved.",
+    "links": [
+      { "label": "Terms", "href": "#terms" },
+      { "label": "Privacy", "href": "#privacy" },
+      { "label": "Support", "href": "mailto:support@example.com" }
+    ]
+  }
+}
