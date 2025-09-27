@@ -1,0 +1,17 @@
+{
+  "name": "digital-market-place",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "concurrently \"npm:server\" \"npm:client\"",
+    "server": "npm --prefix server run dev",
+    "client": "npm --prefix client run dev",
+    "test": "npm run test:server",
+    "test:server": "npm --prefix server run test",
+    "test:client": "npm --prefix client run test"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
