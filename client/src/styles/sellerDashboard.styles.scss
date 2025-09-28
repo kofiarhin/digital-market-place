@@ -1,0 +1,60 @@
+.page {
+  padding: 3rem clamp(1.5rem, 4vw, 6rem);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 760px;
+}
+
+.notice {
+  color: #facc15;
+}
+
+.steps {
+  list-style: decimal;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-left: 1.5rem;
+  color: #cbd5f5;
+}
+
+.form {
+  display: grid;
+  gap: 1rem;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  input,
+  textarea {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    color: inherit;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    resize: vertical;
+  }
+
+  button {
+    justify-self: flex-start;
+    background: #38bdf8;
+    color: #0f172a;
+    border: none;
+    padding: 0.85rem 1.5rem;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+}
+
+.error {
+  color: #fda4af;
+}
+
+.success {
+  color: #4ade80;
+}

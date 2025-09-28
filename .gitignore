@@ -1,6 +1,6 @@
 node_modules
 .env
-notes.txt
-coverage
+*.log
 dist
-.vite
+.DS_Store
+notes.txt
