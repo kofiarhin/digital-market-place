@@ -1,36 +1,61 @@
-const createApp = require('./app');
-const connectDatabase = require('./utils/connectDatabase');
+const express = require("express");
+const cors = require("cors");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
 
-let environment;
+dotenv.config();
 
-try {
-  environment = require('./config/environment');
-} catch (error) {
-  console.error('Environment configuration error:', error.message);
-  process.exit(1);
-}
+const authRoutes = require("./routes/auth");
+const productRoutes = require("./routes/products");
+const checkoutRoutes = require("./routes/checkout");
+const webhookRoutes = require("./routes/webhooks");
+const downloadRoutes = require("./routes/downloads");
 
-const startServer = async () => {
+const app = express();
+
+const corsOptions = {
+  origin: "*"
+};
+
+app.use(cors(corsOptions));
+app.use("/api/webhooks", webhookRoutes);
+app.use(express.json());
+
+app.get("/health", (req, res) => {
+  return res.json({ status: "ok" });
+});
+
+app.use("/api/auth", authRoutes);
+app.use("/api/products", productRoutes);
+app.use("/api/checkout", checkoutRoutes);
+app.use("/api/downloads", downloadRoutes);
+
+const PORT = process.env.PORT || 5000;
+
+const connectToDatabase = async () => {
+  if (!process.env.MONGO_URI) {
+    throw new Error("Missing MONGO_URI environment variable");
+  }
+
+  await mongoose.connect(process.env.MONGO_URI, {
+    serverSelectionTimeoutMS: 5000
+  });
+};
+
+const start = async () => {
   try {
-    await connectDatabase(environment.mongoUri);
-    const app = createApp();
-
-    app.locals.config = {
-      download: environment.download,
-      payouts: environment.payouts
-    };
-
-    return app.listen(environment.port, () => {
-      console.log(`Server listening on port ${environment.port}`);
+    await connectToDatabase();
+    app.listen(PORT, () => {
+      console.log(`Server listening on port ${PORT}`);
     });
   } catch (error) {
-    console.error('Unable to start server', error);
+    console.error("Failed to start server", error);
     process.exit(1);
   }
 };
 
 if (require.main === module) {
-  startServer();
+  start();
 }
 
-module.exports = startServer;
+module.exports = app;

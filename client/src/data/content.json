@@ -1,0 +1,46 @@
+{
+  "home": {
+    "headline": "Launch-ready digital downloads",
+    "subHeadline": "Curated marketplace for templates, audio packs, and learning resources.",
+    "cta": "Browse catalog",
+    "valueProps": [
+      "Instant delivery via secure, expiring links",
+      "Fair revenue split for independent creators",
+      "Global payments with Stripe Checkout"
+    ]
+  },
+  "product": {
+    "purchaseLabel": "Buy now",
+    "descriptionTitle": "What's inside",
+    "fallback": "Loading product...",
+    "meta": [
+      "High quality files stored privately",
+      "Lifetime access from your library",
+      "Free updates from sellers"
+    ]
+  },
+  "cart": {
+    "headline": "Ready to checkout",
+    "empty": "Your cart is empty. Add a product to get started.",
+    "info": "All purchases are delivered instantly to your library.",
+    "cta": "Proceed to checkout"
+  },
+  "library": {
+    "headline": "Your purchases",
+    "empty": "Purchases will appear here after checkout completes.",
+    "instructions": [
+      "Completed payments unlock private download links for 15 minutes.",
+      "Download tokens keep your files secure across devices.",
+      "Need help? Contact support with your order ID."
+    ]
+  },
+  "sellerDashboard": {
+    "headline": "Creator console",
+    "cta": "Create product",
+    "steps": [
+      "Upload your asset to the private bucket and grab the object key.",
+      "Publish product details including secure asset key and slug.",
+      "Share your product link and get paid instantly when buyers checkout."
+    ]
+  }
+}
