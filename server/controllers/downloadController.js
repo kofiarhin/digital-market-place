@@ -1,3 +1,4 @@
+const path = require("path");
 const Order = require("../models/Order");
 const { createDownloadToken, verifyDownloadToken } = require("../utils/downloads");
 const { createSignedDownloadUrl } = require("../utils/s3");
@@ -50,11 +51,25 @@ const getDownloadUrl = async (req, res) => {
       return res.status(403).json({ message: "Order not yet paid" });
     }
 
-    const url = await createSignedDownloadUrl(payload.key);
+    const filePath = await createSignedDownloadUrl(payload.key);
 
-    return res.json({ url });
+    return res.download(filePath, path.basename(filePath), (downloadError) => {
+      if (downloadError && !res.headersSent) {
+        return res.status(500).json({ message: "Failed to download asset", error: downloadError.message });
+      }
+
+      return undefined;
+    });
   } catch (error) {
-    return res.status(401).json({ message: "Invalid or expired download token", error: error.message });
+    if (error.name === "TokenExpiredError" || error.name === "JsonWebTokenError") {
+      return res.status(401).json({ message: "Invalid or expired download token", error: error.message });
+    }
+
+    if (error.code === "ENOENT") {
+      return res.status(404).json({ message: "Requested asset not found" });
+    }
+
+    return res.status(500).json({ message: "Failed to prepare download", error: error.message });
   }
 };
 
